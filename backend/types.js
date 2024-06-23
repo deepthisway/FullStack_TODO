@@ -8,7 +8,7 @@ const createTodo = z.object({
 })
 
 const updateTodo = z.object({
-    id: zod.string(),
+    id: z.string(),
 })
  
 

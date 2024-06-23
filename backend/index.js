@@ -2,6 +2,8 @@ const express = require('express');
 const { createTodo, updateTodo } = require('./types');
 const { todo } = require('./db');
 const app = express()
+const cors = require('cors')
+app.use(cors());
 
 app.use(express.json());
 
@@ -38,11 +40,12 @@ app.put('/completed', async (req,res) =>   {
     const parsedPayload = updateTodo.safeParse(updatePayload);
 
     if(!parsedPayload.sucess)   {
-        req.status(411).json({
+        res.status(411).json({
             msg: 'invalid input done'
         })
     }
-   await todo.update ({
+   await todo.updateOne ({     // this update fxn takes two arguments, first is what do youy want to update and other the parameter you want to update
+
     // we will updade on the basis of ID
     _id: req.body.id,
    }, {
@@ -54,3 +57,7 @@ app.put('/completed', async (req,res) =>   {
 })
 
 
+app.listen('3000', ()  =>   {
+    console.log("App is listening on port 3000");
+    
+})
