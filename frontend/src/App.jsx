@@ -17,7 +17,7 @@ function App() {
     <div>
      <h1>TODO app</h1>
      <CreateTodo/>
-     <Todos todos={todos}></Todos>
+     <Todos todos={todos} ></Todos>
     </div>
   )
 }
